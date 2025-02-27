@@ -1,29 +1,42 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
   },
-  mode: 'development',
+  mode: "development",
   module: {
     rules: [
-        { 
-            test: /\.css$/i, 
-            use: ['style-loader', 'css-loader'] 
-        }
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
-    plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+  plugins: [
+    new HtmlWebpackPlugin({ 
+      template: "./src/index.html",
+      filename: "index.html"
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/menu.html",
+      filename: "menu.html"
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/contact.html",
+      filename: "contact.html"
+    }),
+  ],
     devServer: {
-        static: './dist',
-        open: true,
-        hot: true,
-    },
-    stats: {
+    historyApiFallback: true,
+    open: true,
+    hot: true,
+  },
+  stats: {
     children: true,
   },
 };

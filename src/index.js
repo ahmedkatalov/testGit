@@ -1,3 +1,7 @@
 import './style.css';
 
-console.log('Hello, amigos');
+import {add} from "./menu"
+import {ckdic} from "./contact"
+add()
+ckdic()
+
